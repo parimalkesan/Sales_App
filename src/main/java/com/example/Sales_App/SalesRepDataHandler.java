@@ -18,28 +18,28 @@ public class SalesRepDataHandler implements SalesRepDAO {
 
     @Override
     public List<SalesRep> getSalesRepData() {
-        String SQL="select * from SalesRepData";
+        String SQL="Select * from salesrepdata;";
         List<SalesRep> sRepList=jdbcTemplate.query(SQL,new SalesRepMapper());
         return sRepList;
     }
 
     @Override
     public void addSalesRep(SalesRep salesRep) {
-        String SQL="insert into SalesRepData values(?,?,?,?,?,?)";
+        String SQL="Insert into salesrepdata values(?,?,?,?,?,?);";
         int s=jdbcTemplate.update(SQL,salesRep.getId(),salesRep.getName(),salesRep.getCountry(),salesRep.getCity(),salesRep.getZipCode(),salesRep.getGender());
         System.out.println(s+" rows added");
     }
 
     @Override
     public void updateSalesRep(SalesRep salesRep) {
-        String SQL="insert into SalesRepData values(?,?,?,?,?,?)";
+        String SQL="Insert into salesrepdata values(?,?,?,?,?,?)";
         int s=jdbcTemplate.update(SQL,salesRep.getId(),salesRep.getName(),salesRep.getCountry(),salesRep.getCity(),salesRep.getZipCode(),salesRep.getGender());
         System.out.println(s+" rows added");
     }
 
     @Override
     public void deleteSalesRep(int id) {
-        String sql="delete from SalesRepRecord where Id=?";
+        String sql="Delete from salesrepdata where id=?";
 
         int res=jdbcTemplate.update(sql,id);
         System.out.println(res+" rows deleted");

@@ -24,31 +24,31 @@ public class SalesRepDataController {
     }
 
     @POST
-    @Path("post salesRep")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("postdata")
     @Produces(MediaType.APPLICATION_JSON)
-    public SalesRep post(SalesRep salesRep)
+    public List<SalesRep> post()
     {
+        SalesRep salesRep=new SalesRep(123,"abc","UK","london",1234,"Male");
         salesRepJDBCTemplate.addSalesRep(salesRep);
         //vd.addSalesRepRecord(salesRep);
-        return salesRep;
+        return salesRepJDBCTemplate.getSalesRepData();
     }
 
     @PUT
-    @Path("put salesRep")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("putdata")
     @Produces(MediaType.APPLICATION_JSON)
-    public SalesRep put(SalesRep salesRep)
+    public List<SalesRep> put()
     {
+        SalesRep salesRep=new SalesRep(143,"abcde","UK","london",1234,"Male");
         salesRepJDBCTemplate.updateSalesRep(salesRep);
         //vd.updateSalesRepList(0,salesRep);
-        return salesRep;
+        return salesRepJDBCTemplate.getSalesRepData();
     }
 
     @DELETE
-    @Path("salesRep/{id}")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String delete(@PathParam("id") int id)
+    @Path("deletedata/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<SalesRep> delete(@PathParam("id") int id)
     {
         //if(vd.getSalesRepList().size()>0)
         //{
@@ -56,6 +56,6 @@ public class SalesRepDataController {
            // return "Data deleted";
         //}
         salesRepJDBCTemplate.deleteSalesRep(id);
-        return "Data deleted";
+        return salesRepJDBCTemplate.getSalesRepData();
     }
 }
