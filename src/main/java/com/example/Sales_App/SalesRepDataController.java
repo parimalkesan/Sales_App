@@ -1,6 +1,5 @@
 package com.example.Sales_App;
 
-import com.example.Sales_App.DAO.SalesRepJDBCTemplate;
 import com.example.Sales_App.Model.SalesRep;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -10,11 +9,11 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("MyApi")
-public class MyApi {
+public class SalesRepDataController {
     static VirtualDatabase vd=new VirtualDatabase();
     static ApplicationContext context = new ClassPathXmlApplicationContext("ApplicationContext.xml");
-    static SalesRepJDBCTemplate salesRepJDBCTemplate = (SalesRepJDBCTemplate)context.getBean("salesRepJDBCTemplate");
-
+    static SalesRepDataHandler salesRepJDBCTemplate = (SalesRepDataHandler)context.getBean("salesRepJDBCTemplate");
+    //static SalesRepDAO salesRepJDBCTemplate=context.getBean("salesRepDao",SalesRepDAO.class);
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<SalesRep> get()

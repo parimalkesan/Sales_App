@@ -1,13 +1,14 @@
-package com.example.Sales_App.DAO;
+package com.example.Sales_App;
 
+import com.example.Sales_App.DAO.SalesRepDAO;
+import com.example.Sales_App.DAO.SalesRepMapper;
 import com.example.Sales_App.Model.SalesRep;
-import com.example.Sales_App.SalesRepMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 import java.util.List;
 
-public class SalesRepJDBCTemplate implements SalesRepDAO{
+public class SalesRepDataHandler implements SalesRepDAO {
     private JdbcTemplate jdbcTemplate;
 
     @Override
