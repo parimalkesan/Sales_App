@@ -8,6 +8,8 @@
 <h1><%= "Welcome to the API page" %>
 </h1>
 <br/>
-<a href="webapi/salesrepdata">Click here to check Student List</a>
+<a href="webapi/salesrepdata">Click here to check Sales rep data</a>
+<a href="webapi/salesrepperformancedata">Click here to check sales rep performance</a>
+<a href="webapi/drugsalesdata">Click here to check drug sales data</a>
 </body>
 </html>

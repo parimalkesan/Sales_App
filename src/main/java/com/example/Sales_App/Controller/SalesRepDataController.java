@@ -1,6 +1,7 @@
-package com.example.Sales_App;
+package com.example.Sales_App.Controller;
 
 import com.example.Sales_App.Model.SalesRep;
+import com.example.Sales_App.Handler.SalesRepDataHandler;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -10,15 +11,16 @@ import java.util.List;
 
 @Path("salesrepdata")
 public class SalesRepDataController {
-    static VirtualDatabase vd=new VirtualDatabase();
+    //static VirtualDatabase vd=new VirtualDatabase();
     static ApplicationContext context = new ClassPathXmlApplicationContext("ApplicationContext.xml");
-    static SalesRepDataHandler salesRepJDBCTemplate = (SalesRepDataHandler)context.getBean("salesRepJDBCTemplate");
-    //static SalesRepDAO salesRepJDBCTemplate=context.getBean("salesRepDao",SalesRepDAO.class);
+    static SalesRepDataHandler salesRepDataHandler = (SalesRepDataHandler)context.getBean("salesRepDataHandler");
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<SalesRep> get()
     {
-        List<SalesRep> salesRepList=salesRepJDBCTemplate.getSalesRepData();
+
+        List<SalesRep> salesRepList= salesRepDataHandler.getSalesRepData();
         return salesRepList;
         //return vd.getSalesRepList();
     }
@@ -29,9 +31,9 @@ public class SalesRepDataController {
     @Produces(MediaType.APPLICATION_JSON)
     public List<SalesRep> post(SalesRep salesRep)
     {
-        salesRepJDBCTemplate.addSalesRep(salesRep);
+        salesRepDataHandler.addSalesRep(salesRep);
         //vd.addSalesRepRecord(salesRep);
-        return salesRepJDBCTemplate.getSalesRepData();
+        return salesRepDataHandler.getSalesRepData();
     }
 
     @PUT
@@ -40,9 +42,9 @@ public class SalesRepDataController {
     @Produces(MediaType.APPLICATION_JSON)
     public List<SalesRep> put(SalesRep salesRep)
     {
-        salesRepJDBCTemplate.updateSalesRep(salesRep);
+        salesRepDataHandler.updateSalesRep(salesRep);
         //vd.updateSalesRepList(0,salesRep);
-        return salesRepJDBCTemplate.getSalesRepData();
+        return salesRepDataHandler.getSalesRepData();
     }
 
     @DELETE
@@ -55,7 +57,7 @@ public class SalesRepDataController {
            // vd.deleteSalesRepRecord(0);
            // return "Data deleted";
         //}
-        salesRepJDBCTemplate.deleteSalesRep(id);
-        return salesRepJDBCTemplate.getSalesRepData();
+        salesRepDataHandler.deleteSalesRep(id);
+        return salesRepDataHandler.getSalesRepData();
     }
 }

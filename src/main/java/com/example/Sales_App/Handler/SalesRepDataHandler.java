@@ -1,4 +1,4 @@
-package com.example.Sales_App;
+package com.example.Sales_App.Handler;
 
 import com.example.Sales_App.DAO.SalesRepDAO;
 import com.example.Sales_App.DAO.SalesRepMapper;
@@ -9,24 +9,24 @@ import javax.sql.DataSource;
 import java.util.List;
 
 public class SalesRepDataHandler implements SalesRepDAO {
-    private JdbcTemplate jdbcTemplate;
+    private JdbcTemplate salesRepTemplate;
 
     @Override
     public void setDataSource(DataSource dataSource) {
-        this.jdbcTemplate=new JdbcTemplate(dataSource);
+        this.salesRepTemplate =new JdbcTemplate(dataSource);
     }
 
     @Override
     public List<SalesRep> getSalesRepData() {
         String SQL="Select * from salesrepdata;";
-        List<SalesRep> sRepList=jdbcTemplate.query(SQL,new SalesRepMapper());
+        List<SalesRep> sRepList= salesRepTemplate.query(SQL,new SalesRepMapper());
         return sRepList;
     }
 
     @Override
     public void addSalesRep(SalesRep salesRep) {
         String SQL="Insert into salesrepdata values(?,?,?,?,?,?);";
-        int s=jdbcTemplate.update(SQL,salesRep.getId(),salesRep.getName(),salesRep.getCountry(),salesRep.getCity(),salesRep.getZipCode(),salesRep.getGender());
+        int s= salesRepTemplate.update(SQL,salesRep.getId(),salesRep.getName(),salesRep.getCountry(),salesRep.getCity(),salesRep.getZipCode(),salesRep.getGender());
         System.out.println(s+" rows added");
     }
 
@@ -34,7 +34,7 @@ public class SalesRepDataHandler implements SalesRepDAO {
     public void updateSalesRep(SalesRep salesRep) {
         String SQL="Update salesrepdata set name=?,country=?,city=?,zipcode=?,gender=? where id=?";
         //String SQL="Insert into salesrepdata values(?,?,?,?,?,?)";
-        int s=jdbcTemplate.update(SQL,salesRep.getName(),salesRep.getCountry(),salesRep.getCity(),salesRep.getZipCode(),salesRep.getGender(),salesRep.getId());
+        int s= salesRepTemplate.update(SQL,salesRep.getName(),salesRep.getCountry(),salesRep.getCity(),salesRep.getZipCode(),salesRep.getGender(),salesRep.getId());
         System.out.println(s+" rows added");
     }
 
@@ -42,7 +42,7 @@ public class SalesRepDataHandler implements SalesRepDAO {
     public void deleteSalesRep(int id) {
         String sql="Delete from salesrepdata where id=?";
 
-        int res=jdbcTemplate.update(sql,id);
+        int res= salesRepTemplate.update(sql,id);
         System.out.println(res+" rows deleted");
     }
 }

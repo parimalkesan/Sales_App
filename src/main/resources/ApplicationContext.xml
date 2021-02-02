@@ -10,8 +10,18 @@
         <property name = "password" value = "Root"/>
     </bean>
 
-    <bean id="salesRepJDBCTemplate"
-          class = "com.example.Sales_App.SalesRepDataHandler">
+    <bean id="salesRepDataHandler"
+          class = "com.example.Sales_App.Handler.SalesRepDataHandler">
+        <property name = "dataSource" ref = "dataSource" />
+    </bean>
+
+    <bean id="salesRepPerformanceDataHandler"
+          class = "com.example.Sales_App.Handler.SalesRepPerformanceDataHandler">
+        <property name = "dataSource" ref = "dataSource" />
+    </bean>
+
+    <bean id="drugSalesDataHandler"
+          class = "com.example.Sales_App.Handler.DrugSalesDataHandler">
         <property name = "dataSource" ref = "dataSource" />
     </bean>
 </beans>
