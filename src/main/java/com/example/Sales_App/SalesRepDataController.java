@@ -8,7 +8,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("MyApi")
+@Path("salesrepdata")
 public class SalesRepDataController {
     static VirtualDatabase vd=new VirtualDatabase();
     static ApplicationContext context = new ClassPathXmlApplicationContext("ApplicationContext.xml");
@@ -24,29 +24,29 @@ public class SalesRepDataController {
     }
 
     @POST
-    @Path("postdata")
+    @Path("postsalesrepdata")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public List<SalesRep> post()
+    public List<SalesRep> post(SalesRep salesRep)
     {
-        SalesRep salesRep=new SalesRep(123,"abc","UK","london",1234,"Male");
         salesRepJDBCTemplate.addSalesRep(salesRep);
         //vd.addSalesRepRecord(salesRep);
         return salesRepJDBCTemplate.getSalesRepData();
     }
 
     @PUT
-    @Path("putdata")
+    @Path("putsalesrepdata")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public List<SalesRep> put()
+    public List<SalesRep> put(SalesRep salesRep)
     {
-        SalesRep salesRep=new SalesRep(143,"abcde","UK","london",1234,"Male");
         salesRepJDBCTemplate.updateSalesRep(salesRep);
         //vd.updateSalesRepList(0,salesRep);
         return salesRepJDBCTemplate.getSalesRepData();
     }
 
     @DELETE
-    @Path("deletedata/{id}")
+    @Path("deletesalesrepdata/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<SalesRep> delete(@PathParam("id") int id)
     {
