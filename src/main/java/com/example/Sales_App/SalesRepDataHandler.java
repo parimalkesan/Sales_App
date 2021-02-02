@@ -32,8 +32,9 @@ public class SalesRepDataHandler implements SalesRepDAO {
 
     @Override
     public void updateSalesRep(SalesRep salesRep) {
-        String SQL="Insert into salesrepdata values(?,?,?,?,?,?)";
-        int s=jdbcTemplate.update(SQL,salesRep.getId(),salesRep.getName(),salesRep.getCountry(),salesRep.getCity(),salesRep.getZipCode(),salesRep.getGender());
+        String SQL="Update salesrepdata set name=?,country=?,city=?,zipcode=?,gender=? where id=?";
+        //String SQL="Insert into salesrepdata values(?,?,?,?,?,?)";
+        int s=jdbcTemplate.update(SQL,salesRep.getName(),salesRep.getCountry(),salesRep.getCity(),salesRep.getZipCode(),salesRep.getGender(),salesRep.getId());
         System.out.println(s+" rows added");
     }
 
