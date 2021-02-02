@@ -11,7 +11,6 @@ import java.util.List;
 
 @Path("salesrepdata")
 public class SalesRepDataController {
-    //static VirtualDatabase vd=new VirtualDatabase();
     static ApplicationContext context = new ClassPathXmlApplicationContext("ApplicationContext.xml");
     static SalesRepDataHandler salesRepDataHandler = (SalesRepDataHandler)context.getBean("salesRepDataHandler");
 
@@ -23,7 +22,6 @@ public class SalesRepDataController {
 
         List<SalesRep> salesRepList= salesRepDataHandler.getSalesRepData(offset,limit);
         return salesRepList;
-        //return vd.getSalesRepList();
     }
 
     @POST
@@ -33,7 +31,6 @@ public class SalesRepDataController {
     public List<SalesRep> post(SalesRep salesRep)
     {
         salesRepDataHandler.addSalesRep(salesRep);
-        //vd.addSalesRepRecord(salesRep);
         return salesRepDataHandler.getSalesRepData(0,10);
     }
 
@@ -44,7 +41,6 @@ public class SalesRepDataController {
     public List<SalesRep> put(SalesRep salesRep)
     {
         salesRepDataHandler.updateSalesRep(salesRep);
-        //vd.updateSalesRepList(0,salesRep);
         return salesRepDataHandler.getSalesRepData(0,10);
     }
 
@@ -53,11 +49,6 @@ public class SalesRepDataController {
     @Produces(MediaType.APPLICATION_JSON)
     public List<SalesRep> delete(@PathParam("id") int id)
     {
-        //if(vd.getSalesRepList().size()>0)
-        //{
-           // vd.deleteSalesRepRecord(0);
-           // return "Data deleted";
-        //}
         salesRepDataHandler.deleteSalesRep(id);
         return salesRepDataHandler.getSalesRepData(0,10);
     }
