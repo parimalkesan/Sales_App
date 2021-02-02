@@ -1,11 +1,11 @@
 package com.example.Sales_App.Model;
 
 public class SalesRep {
-    private int id;
-    private String name;
+    private int salesRepId;
+    private String salesRepName;
     private String country;
     private String city;
-    private int zipCode;
+    private int pinCode;
     private String gender;
 
     public SalesRep() {
@@ -13,20 +13,20 @@ public class SalesRep {
     }
 
     public SalesRep(int id, String name, String country, String city, int zipCode, String gender) {
-        this.id = id;
-        this.name = name;
+        this.salesRepId = id;
+        this.salesRepName = name;
         this.country = country;
         this.city = city;
-        this.zipCode = zipCode;
+        this.pinCode = zipCode;
         this.gender = gender;
     }
 
-    public int getId() {
-        return id;
+    public int getSalesRepId() {
+        return salesRepId;
     }
 
-    public String getName() {
-        return name;
+    public String getSalesRepName() {
+        return salesRepName;
     }
 
     public String getCountry() {
@@ -37,20 +37,20 @@ public class SalesRep {
         return city;
     }
 
-    public int getZipCode() {
-        return zipCode;
+    public int getPinCode() {
+        return pinCode;
     }
 
     public String getGender() {
         return gender;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setSalesRepId(int salesRepId) {
+        this.salesRepId = salesRepId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSalesRepName(String salesRepName) {
+        this.salesRepName = salesRepName;
     }
 
     public void setCountry(String country) {
@@ -61,8 +61,8 @@ public class SalesRep {
         this.city = city;
     }
 
-    public void setZipCode(int zipCode) {
-        this.zipCode = zipCode;
+    public void setPinCode(int pinCode) {
+        this.pinCode = pinCode;
     }
 
     public void setGender(String gender) {

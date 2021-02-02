@@ -11,11 +11,11 @@ public class SalesRepMapper implements RowMapper<SalesRep> {
     @Override
     public SalesRep mapRow(ResultSet resultSet, int rowNumber) throws SQLException {
         SalesRep salesRep = new SalesRep();
-        salesRep.setId(resultSet.getInt("id"));
-        salesRep.setName(resultSet.getString("name"));
+        salesRep.setSalesRepId(resultSet.getInt("salesrep_id"));
+        salesRep.setSalesRepName(resultSet.getString("salesrep_name"));
         salesRep.setCountry(resultSet.getString("country"));
         salesRep.setCity(resultSet.getString("city"));
-        salesRep.setZipCode(resultSet.getInt("zipcode"));
+        salesRep.setPinCode(resultSet.getInt("pincode"));
         salesRep.setGender(resultSet.getString("gender"));
         return salesRep;
     }

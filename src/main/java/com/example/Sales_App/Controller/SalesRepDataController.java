@@ -17,10 +17,11 @@ public class SalesRepDataController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<SalesRep> get()
+    public List<SalesRep> get(@QueryParam("offset") int offset,
+                              @QueryParam("limit") int limit)
     {
 
-        List<SalesRep> salesRepList= salesRepDataHandler.getSalesRepData();
+        List<SalesRep> salesRepList= salesRepDataHandler.getSalesRepData(offset,limit);
         return salesRepList;
         //return vd.getSalesRepList();
     }
@@ -33,7 +34,7 @@ public class SalesRepDataController {
     {
         salesRepDataHandler.addSalesRep(salesRep);
         //vd.addSalesRepRecord(salesRep);
-        return salesRepDataHandler.getSalesRepData();
+        return salesRepDataHandler.getSalesRepData(0,10);
     }
 
     @PUT
@@ -44,7 +45,7 @@ public class SalesRepDataController {
     {
         salesRepDataHandler.updateSalesRep(salesRep);
         //vd.updateSalesRepList(0,salesRep);
-        return salesRepDataHandler.getSalesRepData();
+        return salesRepDataHandler.getSalesRepData(0,10);
     }
 
     @DELETE
@@ -58,6 +59,6 @@ public class SalesRepDataController {
            // return "Data deleted";
         //}
         salesRepDataHandler.deleteSalesRep(id);
-        return salesRepDataHandler.getSalesRepData();
+        return salesRepDataHandler.getSalesRepData(0,10);
     }
 }

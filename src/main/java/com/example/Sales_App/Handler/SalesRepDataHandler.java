@@ -17,30 +17,29 @@ public class SalesRepDataHandler implements SalesRepDAO {
     }
 
     @Override
-    public List<SalesRep> getSalesRepData() {
-        String SQL="Select * from salesrepdata;";
-        List<SalesRep> sRepList= salesRepTemplate.query(SQL,new SalesRepMapper());
-        return sRepList;
+    public List<SalesRep> getSalesRepData(int offset,int limit) {
+        String SQL="Select * from salesrepdetails offset "+offset+" limit "+limit+";";
+        List<SalesRep> salesRepList= salesRepTemplate.query(SQL,new SalesRepMapper());
+        return salesRepList;
     }
 
     @Override
     public void addSalesRep(SalesRep salesRep) {
-        String SQL="Insert into salesrepdata values(?,?,?,?,?,?);";
-        int s= salesRepTemplate.update(SQL,salesRep.getId(),salesRep.getName(),salesRep.getCountry(),salesRep.getCity(),salesRep.getZipCode(),salesRep.getGender());
+        String SQL="Insert into salesrepdetails values(?,?,?,?,?,?);";
+        int s= salesRepTemplate.update(SQL,salesRep.getSalesRepId(),salesRep.getSalesRepName(),salesRep.getCountry(),salesRep.getCity(),salesRep.getPinCode(),salesRep.getGender());
         System.out.println(s+" rows added");
     }
 
     @Override
     public void updateSalesRep(SalesRep salesRep) {
-        String SQL="Update salesrepdata set name=?,country=?,city=?,zipcode=?,gender=? where id=?";
-        //String SQL="Insert into salesrepdata values(?,?,?,?,?,?)";
-        int s= salesRepTemplate.update(SQL,salesRep.getName(),salesRep.getCountry(),salesRep.getCity(),salesRep.getZipCode(),salesRep.getGender(),salesRep.getId());
+        String SQL="Update salesrepdetails set salesrep_name=?,country=?,city=?,pincode=?,gender=? where salesrep_id=?";
+        int s= salesRepTemplate.update(SQL,salesRep.getSalesRepName(),salesRep.getCountry(),salesRep.getCity(),salesRep.getPinCode(),salesRep.getGender(),salesRep.getSalesRepId());
         System.out.println(s+" rows added");
     }
 
     @Override
     public void deleteSalesRep(int id) {
-        String sql="Delete from salesrepdata where id=?";
+        String sql="Delete from salesrepdetails where salesrep_id=?";
 
         int res= salesRepTemplate.update(sql,id);
         System.out.println(res+" rows deleted");
