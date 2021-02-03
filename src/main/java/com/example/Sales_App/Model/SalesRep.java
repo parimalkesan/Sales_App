@@ -9,7 +9,6 @@ public class SalesRep {
     private String gender;
 
     public SalesRep() {
-
     }
 
     public SalesRep(int id, String name, String country, String city, int zipCode, String gender) {

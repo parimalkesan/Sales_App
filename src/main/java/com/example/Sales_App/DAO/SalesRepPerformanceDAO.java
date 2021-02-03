@@ -10,5 +10,5 @@ public interface SalesRepPerformanceDAO {
 
     public void setDataSource(DataSource dataSource);
 
-    public List<SalesRepPerformance> getSalesRepPerformanceData();
+    public List<SalesRepPerformance> getSalesRepPerformanceData(String product,int month);
 }

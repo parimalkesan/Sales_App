@@ -12,11 +12,8 @@ public class SalesRepPerformanceMapper implements RowMapper<SalesRepPerformance>
     public SalesRepPerformance mapRow(ResultSet resultSet, int rowNo) throws SQLException {
 
         SalesRepPerformance salesRepPerformance = new SalesRepPerformance();
-        salesRepPerformance.setId(resultSet.getInt("id"));
-        salesRepPerformance.setRepName(resultSet.getString("rep_name"));
-        salesRepPerformance.setProductName(resultSet.getString("product_name"));
-        salesRepPerformance.setMonth(resultSet.getString("month"));
-        salesRepPerformance.setSales(resultSet.getInt("sales"));
+        salesRepPerformance.setSalesRepName(resultSet.getString("salesrep_name"));
+        salesRepPerformance.setSales(resultSet.getInt("price"));
         return salesRepPerformance;
     }
 }

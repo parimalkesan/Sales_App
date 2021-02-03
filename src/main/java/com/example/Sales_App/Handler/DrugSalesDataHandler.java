@@ -18,9 +18,11 @@ public class DrugSalesDataHandler implements DrugSalesDAO {
     }
 
     @Override
-    public List<DrugSales> getDrugData() {
-        String SQL="Select * from drugsalesdata;";
-        List<DrugSales> drugSalesDataList= drugSalesDataTemplate.query(SQL,new DrugSalesMapper());
+    public List<DrugSales> getDrugSalesData(String city) {
+        String SQL="SELECT product_name,SUM(price) as price FROM historicalsales INNER JOIN salesrepdetails "+
+                "ON historicalsales.salesrep_id=salesrepdetails.salesrep_id WHERE city=? AND EXTRACT(MONTH FROM date)="+
+                "EXTRACT(MONTH FROM CURRENT_DATE) GROUP BY product_id,product_name ORDER BY price DESC LIMIT 3";
+        List<DrugSales> drugSalesDataList= drugSalesDataTemplate.query(SQL,new DrugSalesMapper(),city);
         return drugSalesDataList;
     }
 }

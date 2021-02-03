@@ -10,10 +10,8 @@ public class DrugSalesMapper implements RowMapper<DrugSales> {
     @Override
     public DrugSales mapRow(ResultSet resultSet, int rowNo) throws SQLException {
         DrugSales drug=new DrugSales();
-        drug.setName(resultSet.getString("name"));
-        drug.setSales(resultSet.getInt("sales"));
-        drug.setCity(resultSet.getString("city"));
-        drug.setMonth(resultSet.getString("month"));
+        drug.setDrugName(resultSet.getString("product_name"));
+        drug.setDrugSales(resultSet.getInt("price"));
         return drug;
     }
 }

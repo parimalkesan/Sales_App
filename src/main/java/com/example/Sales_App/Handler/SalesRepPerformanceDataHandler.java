@@ -19,9 +19,12 @@ public class SalesRepPerformanceDataHandler implements SalesRepPerformanceDAO{
     }
 
     @Override
-    public List<SalesRepPerformance> getSalesRepPerformanceData() {
-        String SQL="Select * from salesrepperformancedata;";
-        List<SalesRepPerformance> sRepPerformanceList= salesRepPerformanceTemplate.query(SQL,new SalesRepPerformanceMapper());
+    public List<SalesRepPerformance> getSalesRepPerformanceData(String product,int month) {
+        String SQL="SELECT salesrep_name,SUM(price) as price FROM historicalsales INNER JOIN salesrepdetails " +
+                "ON historicalsales.salesrep_id=salesrepdetails.salesrep_id WHERE historicalsales.product_name=? "+
+                "AND EXTRACT(MONTH FROM historicalsales.date)=? GROUP BY salesrepdetails.salesrep_name,historicalsales.salesrep_id ORDER BY price DESC LIMIT 3;";
+        SalesRepPerformanceMapper salesRepPerformanceMapper=new SalesRepPerformanceMapper();
+        List<SalesRepPerformance> sRepPerformanceList= salesRepPerformanceTemplate.query(SQL,salesRepPerformanceMapper,product,month);
         return sRepPerformanceList;
     }
 }

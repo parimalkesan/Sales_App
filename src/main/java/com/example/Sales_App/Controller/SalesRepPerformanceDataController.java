@@ -7,9 +7,7 @@ import com.example.Sales_App.Model.SalesRepPerformance;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
@@ -21,10 +19,11 @@ public class SalesRepPerformanceDataController
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<SalesRepPerformance> get()
+    public List<SalesRepPerformance> get(@QueryParam("product") String product,
+                                         @QueryParam("month") int month)
     {
 
-        List<SalesRepPerformance> salesRepPerformanceList= salesRepPerformanceDataHandler.getSalesRepPerformanceData();
+        List<SalesRepPerformance> salesRepPerformanceList= salesRepPerformanceDataHandler.getSalesRepPerformanceData(product,month);
         return salesRepPerformanceList;
         //return vd.getSalesRepList();
     }

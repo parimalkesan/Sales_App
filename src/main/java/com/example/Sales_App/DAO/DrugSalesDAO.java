@@ -8,5 +8,5 @@ import java.util.List;
 public interface DrugSalesDAO {
 
     public void setDataSource(DataSource dataSource);
-    public List<DrugSales> getDrugData();
+    public List<DrugSales> getDrugSalesData(String city);
 }

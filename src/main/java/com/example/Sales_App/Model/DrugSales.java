@@ -1,50 +1,31 @@
 package com.example.Sales_App.Model;
 
 public class DrugSales {
-    private String name;
-    private int sales;
-    private String city;
-    private String month;
+    private String drugName;
+    private int drugSales;
 
-    public DrugSales(){
+    public DrugSales() {
     }
 
-    public DrugSales(String name, int sales, String city, String month) {
-        this.name = name;
-        this.sales = sales;
-        this.city = city;
-        this.month = month;
+    public DrugSales(String name, int sales) {
+        this.drugName = name;
+        this.drugSales = sales;
     }
 
-    public String getName() {
-        return name;
+    public String getDrugName() {
+        return drugName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDrugName(String drugName) {
+        this.drugName = drugName;
     }
 
-    public int getSales() {
-        return sales;
+    public int getDrugSales() {
+        return drugSales;
     }
 
-    public void setSales(int sales) {
-        this.sales = sales;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getMonth() {
-        return month;
-    }
-
-    public void setMonth(String month) {
-        this.month = month;
+    public void setDrugSales(int drugSales) {
+        this.drugSales = drugSales;
     }
 }
+

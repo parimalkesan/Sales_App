@@ -18,8 +18,8 @@ public class SalesRepDataHandler implements SalesRepDAO {
 
     @Override
     public List<SalesRep> getSalesRepData(int offset,int limit) {
-        String SQL="Select * from salesrepdetails offset "+offset+" limit "+limit+";";
-        List<SalesRep> salesRepList= salesRepTemplate.query(SQL,new SalesRepMapper());
+        String SQL="Select * from salesrepdetails offset ? limit ?;";
+        List<SalesRep> salesRepList= salesRepTemplate.query(SQL,new SalesRepMapper(),offset,limit);
         return salesRepList;
     }
 
