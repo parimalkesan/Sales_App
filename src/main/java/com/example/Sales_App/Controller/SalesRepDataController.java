@@ -46,11 +46,9 @@ public class SalesRepDataController {
     }
 
     @DELETE
-    @Path("deletesalesrepdata/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<SalesRep> delete(@PathParam("id") int id)
+    @Path("deletesalesrepdata")
+    public void delete(@QueryParam("id") int id)
     {
         salesRepDataHandler.deleteSalesRep(id);
-        return salesRepDataHandler.getSalesRepData(0,10,"");
     }
 }

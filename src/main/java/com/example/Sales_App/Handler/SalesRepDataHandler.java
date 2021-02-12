@@ -23,7 +23,7 @@ public class SalesRepDataHandler implements SalesRepDAO {
             List<SalesRep> salesRepList = salesRepTemplate.query(SQL, new SalesRepMapper(), offset, limit);
             return salesRepList;
         }
-        String SQL = "Select * from salesrepdetails where salesrep_name like ?"+" offset ? limit ?;";
+        String SQL = "Select * from salesrepdetails where salesrep_name ILIKE ?"+" offset ? limit ?;";
         List<SalesRep> salesRepList=salesRepTemplate.query(SQL,new SalesRepMapper(),searchCriteria+"%",offset,limit);
         return salesRepList;
     }
@@ -32,14 +32,12 @@ public class SalesRepDataHandler implements SalesRepDAO {
     public void addSalesRep(SalesRep salesRep) {
         String SQL="Insert into salesrepdetails values(?,?,?,?,?,?);";
         int s= salesRepTemplate.update(SQL,salesRep.getSalesRepId(),salesRep.getSalesRepName(),salesRep.getCountry(),salesRep.getCity(),salesRep.getPinCode(),salesRep.getGender());
-        System.out.println(s+" rows added");
     }
 
     @Override
     public void updateSalesRep(SalesRep salesRep) {
         String SQL="Update salesrepdetails set salesrep_name=?,country=?,city=?,pincode=?,gender=? where salesrep_id=?";
         int s= salesRepTemplate.update(SQL,salesRep.getSalesRepName(),salesRep.getCountry(),salesRep.getCity(),salesRep.getPinCode(),salesRep.getGender(),salesRep.getSalesRepId());
-        System.out.println(s+" rows added");
     }
 
     @Override
@@ -47,6 +45,5 @@ public class SalesRepDataHandler implements SalesRepDAO {
         String sql="Delete from salesrepdetails where salesrep_id=?";
 
         int res= salesRepTemplate.update(sql,id);
-        System.out.println(res+" rows deleted");
     }
 }
