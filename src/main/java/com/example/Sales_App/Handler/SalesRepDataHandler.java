@@ -17,14 +17,14 @@ public class SalesRepDataHandler implements SalesRepDAO {
     }
 
     @Override
-    public List<SalesRep> getSalesRepData(int offset,int limit,String searchCriteria) {
+    public List<SalesRep> getSalesRepData(String searchCriteria) {
         if(searchCriteria==null) {
-            String SQL = "Select * from salesrepdetails offset ? limit ?;";
-            List<SalesRep> salesRepList = salesRepTemplate.query(SQL, new SalesRepMapper(), offset, limit);
+            String SQL = "Select * from salesrepdetails;";
+            List<SalesRep> salesRepList = salesRepTemplate.query(SQL, new SalesRepMapper());
             return salesRepList;
         }
-        String SQL = "Select * from salesrepdetails where salesrep_name ILIKE ?"+" offset ? limit ?;";
-        List<SalesRep> salesRepList=salesRepTemplate.query(SQL,new SalesRepMapper(),searchCriteria+"%",offset,limit);
+        String SQL = "Select * from salesrepdetails where salesrep_name ILIKE ?;";
+        List<SalesRep> salesRepList=salesRepTemplate.query(SQL,new SalesRepMapper(),searchCriteria+"%");
         return salesRepList;
     }
 

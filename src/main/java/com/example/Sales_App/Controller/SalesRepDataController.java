@@ -16,12 +16,10 @@ public class SalesRepDataController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<SalesRep> get(@QueryParam("offset") int offset,
-                              @QueryParam("limit") int limit,
-                              @QueryParam("searchCriteria") String searchCriteria)
+    public List<SalesRep> get(@QueryParam("searchCriteria") String searchCriteria)
     {
 
-        List<SalesRep> salesRepList= salesRepDataHandler.getSalesRepData(offset,limit,searchCriteria);
+        List<SalesRep> salesRepList= salesRepDataHandler.getSalesRepData(searchCriteria);
         return salesRepList;
     }
 
@@ -29,20 +27,18 @@ public class SalesRepDataController {
     @Path("postsalesrepdata")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public List<SalesRep> post(SalesRep salesRep)
+    public void post(SalesRep salesRep)
     {
         salesRepDataHandler.addSalesRep(salesRep);
-        return salesRepDataHandler.getSalesRepData(0,10,"");
     }
 
     @PUT
     @Path("putsalesrepdata")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public List<SalesRep> put(SalesRep salesRep)
+    public void put(SalesRep salesRep)
     {
         salesRepDataHandler.updateSalesRep(salesRep);
-        return salesRepDataHandler.getSalesRepData(0,10,"");
     }
 
     @DELETE
